@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_player
+    +materialized: table
+    description: staging table for player data. Icludes minimal data about the player's name, level, country of organization
+    columns:
+      # business key
+      - name: player_id
+        description: the original primary key used by the player masterdata source AKA me
+      # payload data
+      - name: player_name
+        description: the user name of the player
+      - name: country
+        description: the country where the player originates from
+      - name: steam_level
+        description: the player's level listed on steam
+      # metadata
+      - name: _STG_COPY_TS
+      - name: _STG_FILE_LOAD_TS
+      - name: _STG_FILE_NAME
