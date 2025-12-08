@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: stg_map
+    +materialized: table
+    description: staginp map data from external sources grabbed from the web
+    columns:
+      # business key
+      - name: map_index
+        description: the original primary key used by valve to identify maps
+      # payload data
+      - name: map_name
+        description: the map's name
+      - name: game_mode
+        description: the game mode supported by the map
+      # metadata
+      - name: _STG_COPY_TS
+      - name: _STG_FILE_LOAD_TS
+      - name: _STG_FILE_NAME
