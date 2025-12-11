@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: v_stg_map
+    +materialized: view
+    description: view based on stage table with the required transformation for core layer. Includes minimal data about the map's name and game mode.
+    columns:
+      # business key
+      - name: map_index
+        description: the original primary key used by the map masterdata source AKA me
+      # payload data
+      - name: map_name
+        description: name of the map
+      - name: game_mode
+        description: game mode of the map
+      # hash diff
+      - name: hash_diff
+        description: hash of the payload data for change detection
+      # metadata
+      - name: _STG_COPY_TS
+      - name: _STG_FILE_LOAD_TS
+      - name: _STG_FILE_NAME
