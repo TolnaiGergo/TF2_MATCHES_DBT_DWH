@@ -35,3 +35,7 @@ models:
     stage:
       +schema: "STAGE"
       +materialized: table
+    core:
+      +schema: "CORE"
+      v_stg:
+        +materialized: view
