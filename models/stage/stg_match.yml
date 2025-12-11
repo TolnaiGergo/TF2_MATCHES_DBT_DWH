@@ -1,0 +1,77 @@
+version: 2
+
+models:
+  - name: stg_match
+    +materialized: table
+    description: staging match data loaded from external match logs
+    columns:
+      # identifiers
+      - name: match_id
+        description: unique identifier of the match
+      - name: player_id
+        description: unique identifier of the player
+
+      # timestamps
+      - name: match_creation_time
+        description: match creation timestamp
+      - name: connection_time
+        description: timestamp when the player connected
+      - name: join_time
+        description: when the player joined the match
+      - name: match_end_time
+        description: when the match ended
+      - name: time_left_match
+        description: when the player left the match
+
+      # match details
+      - name: type
+        description: match type identifier
+      - name: joined_after_match_start
+        description: whether the player joined after the match started
+      - name: time_in_queue
+        description: time spent in queue before joining
+      - name: map_index
+        description: map identifier for the match
+      - name: match_duration
+        description: total duration of the match
+
+      # scores
+      - name: red_team_final_score
+        description: final score of the red team
+      - name: blu_team_final_score
+        description: final score of the blue team
+      - name: winning_team
+        description: which team won the match
+      - name: win_reason
+        description: reason for winning
+      - name: team_at_join
+        description: player’s team at match join
+      - name: result_team
+        description: player’s team at result
+      - name: result_score
+        description: player’s final score
+      - name: result_rank
+        description: rank of the player in the match
+
+      # performance metrics
+      - name: classes_played
+        description: integer token where each number corresponds to the combination of classes played in the match
+      - name: kills
+        description: number of kills
+      - name: deaths
+        description: number of deaths
+      - name: damage
+        description: total damage dealt
+      - name: healing
+        description: total healing done
+      - name: support
+        description: support score
+      - name: leave_reason
+        description: reason why the player left the match
+      - name: reached_conclusion
+        description: indicates if the match reached a proper conclusion
+
+      # metadata
+      - name: _stg_file_name
+      - name: _stg_file_load_ts
+      - name: _stg_copy_ts
