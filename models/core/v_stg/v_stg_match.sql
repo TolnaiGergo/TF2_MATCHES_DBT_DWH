@@ -102,9 +102,7 @@ v_stg_match_cte as(
             ELSE 'unknown'
         END AS leave_reason,
        reached_conclusion,
-       -- hash diff
-       {{ hash_cols('stg_match',['match_id','map_index','player_id','classes_played','_STG_FILE_NAME','_STG_FILE_LOAD_TS','_STG_COPY_TS'], true, true) }} as hash_diff,
-       --metadata
+      --metadata
        _stg_file_name,
        _stg_file_load_ts,
        _stg_copy_ts

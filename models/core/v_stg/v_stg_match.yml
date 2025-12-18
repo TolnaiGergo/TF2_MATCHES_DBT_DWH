@@ -70,9 +70,6 @@ models:
         description: decoded reason why the player left the match
       - name: reached_conclusion
         description: indicates whether the match reached a proper conclusion
-      # hash diff
-      - name: hash_diff
-        description: hash of the payload data for change detection
       # metadata
       - name: _STG_FILE_NAME
         description: name of the source file from the stage
