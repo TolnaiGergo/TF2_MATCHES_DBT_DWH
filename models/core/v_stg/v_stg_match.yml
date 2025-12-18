@@ -77,3 +77,4 @@ models:
         description: timestamp when the source file was loaded
       - name: _STG_COPY_TS
         description: timestamp when the data was copied into the stage
+      - name: _core_load_ts
