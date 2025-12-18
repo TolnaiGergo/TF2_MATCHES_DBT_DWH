@@ -1,0 +1,10 @@
+﻿class_pk,class_name,valve_category,community_primary_category,community_secondary_category
+0,Scout,offensive,pick,
+1,Sniper,support,pick,
+2,Soldier,offensive,power,pick
+3,Demoman,defensive,power,
+4,Medic,support,support,
+5,Heavy,defensive,power,
+6,Pyro,offensive,power,support
+7,Spy,support,pick,support
+8,Engineer,defensive,support,
