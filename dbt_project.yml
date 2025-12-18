@@ -44,24 +44,6 @@ models:
 seeds:
   class_data:
     +enabled: true
-    +database: tf2_dbt_db
-    +schema: mart
     +full_refresh: true
-    columns:
-      - name: class_pk
-        meta:
-          business_key: true
-          data_type: number
-      - name: class_name
-        meta:
-          data_type: string
-      - name: valve_category
-        meta:
-          data_type: string
-      - name: community_primary_category
-        meta:
-          data_type: string
-      - name: community_secondary_category
-        meta:
-          data_type: string
+    
     

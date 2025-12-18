@@ -1,0 +1,25 @@
+seeds:
+  - name: class_data
+    config:
+      database: "TF2_DBT_DB"
+      schema: "MART"
+      column_types:
+        class_pk: number
+        class_name: varchar(100)
+        valve_category: varchar(100)
+        community_primary_category: varchar(100)
+        community_secondary_category: varchar(100)
+      columns:
+      - name: class_pk
+        description: the primary key chosen for the classes
+        meta:
+          business_key: true
+      - name: class_name
+        description: the name of the playable classes
+      - name: valve_category
+        description: the valve official category assigned to the class
+      - name: community_primary_category
+        description: the primary category determined by the player base
+      - name: community_secondary_category
+        description: the secondary category determined by the player base
+     
