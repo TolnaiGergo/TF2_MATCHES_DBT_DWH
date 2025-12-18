@@ -39,3 +39,5 @@ models:
       +schema: "CORE"
       v_stg:
         +materialized: view
+      incremental:
+        +materialized: incremental
