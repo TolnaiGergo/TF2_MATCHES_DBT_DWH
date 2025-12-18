@@ -28,7 +28,9 @@ v_stg_player_cte as(
     from stg_player_cte   
 )
 select
-    *
-from v_stg_player_cte   
+    v_stg .*,
+    -- additional metadata
+    CURRENT_TIMESTAMP() as _core_load_ts
+from v_stg_player_cte as v_stg   
     
     

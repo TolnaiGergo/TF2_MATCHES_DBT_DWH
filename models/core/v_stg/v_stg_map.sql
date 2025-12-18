@@ -26,7 +26,9 @@ v_stg_map_cte as(
     from stg_map_cte   
 )
 select
-    *
-from v_stg_map_cte   
+    v_stg .*,
+    -- additional metadata
+    CURRENT_TIMESTAMP() as _core_load_ts
+from v_stg_map_cte as v_stg   
     
     
