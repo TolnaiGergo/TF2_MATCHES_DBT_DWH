@@ -41,6 +41,7 @@ with v_stg_match_cte as (
        _stg_file_name,
        _stg_file_load_ts,
        _stg_copy_ts
+    from {{ ref('v_stg_match')}}
 )
 select
     v_stg.*,
