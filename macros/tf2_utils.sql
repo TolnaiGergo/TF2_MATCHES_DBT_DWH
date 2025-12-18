@@ -1,6 +1,6 @@
 {% macro hash_cols(model,col_list, is_exclude, is_hashdiff) %}
     {% if is_exclude %}
-        {% set relation = ref(model_name) %}
+        {% set relation = ref(model) %}
         {% set relation_cols = adapter.get_columns_in_relation(relation) %}
         {% set result_cols = [] %}
             {% for col in relation_cols %}
