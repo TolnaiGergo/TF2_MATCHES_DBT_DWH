@@ -41,6 +41,9 @@ models:
         +materialized: view
       incremental:
         +materialized: incremental
+    mart:
+      +schema: "MART"
+      +materialized: table
 seeds:
   class_data:
     +enabled: true
