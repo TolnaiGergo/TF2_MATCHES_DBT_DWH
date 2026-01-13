@@ -44,6 +44,12 @@ models:
     mart:
       +schema: "MART"
       +materialized: table
+      dim:
+        +materialized: table
+      fact:
+        +materialized: incremental
+      bridge:
+        +materialized: table 
 seeds:
   class_data:
     +enabled: true
