@@ -1,0 +1,15 @@
+
+version: 2
+
+models:
+  - name: dim_player
+    description: dimension table containing information about players.
+    columns:
+      - name: player_id
+        description: business key for the player
+      - name: player_name
+        description: the user name of the player
+      - name: country
+        description: the country where the player originates from
+      - name: lvl
+        description: the level of the player listed on steam
