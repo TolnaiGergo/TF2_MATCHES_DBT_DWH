@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: class_match_bridge
+    description: bridge table connecting matches to class sets played in those matches.
+    columns:
+      - name: classes_played
+        description: integer representation of which classes were played. The tenth binary digit was removed by dividing by 2 and flooring the result. Part of composite key.
+      - name: dim_class_id
+        description: integer primary key representing which class in the class set is being referred to. Part of composite key.
+      - name: participated
+        description: boolean indicates whether the class represented by dim_class_id was played in the match.
