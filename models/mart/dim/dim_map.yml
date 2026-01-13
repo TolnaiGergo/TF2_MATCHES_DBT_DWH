@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_map
+    description: dimension table containing information about maps.
+    columns:
+      - name: map_index
+        description: business key for the map
+      - name: map_name
+        description: the name of the map
+      - name: game_mode
+        description: the game mode associated with the map
