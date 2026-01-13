@@ -1,0 +1,29 @@
+
+version: 2
+
+models:
+  - name: dim_date
+    description: date dimension table containing dates from today to the earliest match in the dataset.
+    columns:
+      # surrogate key
+      - name: dim_date_sk
+        description: surrogate key for the date dimension, in the format YYYYMMDD
+      # dimension attributes
+      - name: calendar_date
+        description: the actual date
+      - name: year
+        description: the year of the date
+      - name: quarter
+        description: the quarter of the date
+      - name: month
+        description: the month of the date
+      - name: week
+        description: the week of the date
+      - name: day_of_year
+        description: the day of the year
+      - name: day_of_week
+        description: the day of the week
+      - name: day_of_the_month
+        description: the day of the month
+      - name: day_name
+        description: the name of the day
