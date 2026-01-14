@@ -8,6 +8,9 @@ models:
       # business key
       - name: player_id
         description: the original primary key used by the player masterdata source AKA me
+        data_tests:
+          - unique
+          - not_null
       # payload data
       - name: player_name
         description: the user name of the player

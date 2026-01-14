@@ -8,6 +8,9 @@ models:
       # business key
       - name: map_index
         description: the original primary key used by valve to identify maps
+        data_tests:
+          - unique
+          - not_null
       # payload data
       - name: map_name
         description: the map's name
