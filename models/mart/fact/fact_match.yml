@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: match
+  - name: fact_match
     +materialized: incremental
     description: >
       Incremental core model.
