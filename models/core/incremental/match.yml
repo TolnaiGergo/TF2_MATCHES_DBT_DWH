@@ -14,12 +14,24 @@ models:
       # business key
       - name: match_id
         description: unique business key identifying a match
-
+        data_tests:
+          - unique
+          - not_null
       # foreign keys
       - name: map_index
         description: foreign key referencing the map dimension
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('core_map_snapshot')
+                field: map_index
       - name: player_id
         description: identifier of the player participating in the match
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('core_player_snapshot')
+                field: player_id
       - name: classes_played
         description: integer representation of which classes were played.
 
@@ -50,8 +62,16 @@ models:
         description: identifier of the winning team
       - name: win_reason
         description: reason why the match was won
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['RED','BLU','DRAW']
       - name: result_team
         description: team the player belonged to at the end of the match
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['red','blu','none']
       - name: result_score
         description: score achieved by the player
       - name: result_rank
