@@ -22,16 +22,14 @@ models:
         description: foreign key referencing the map dimension
         data_tests:
           - relationships:
-              arguments:
-                to: ref('core_map_snapshot')
-                field: map_index
+              to: ref('core_map_snapshot')
+              field: map_index
       - name: player_id
         description: identifier of the player participating in the match
         data_tests:
           - relationships:
-              arguments:
-                to: ref('core_player_snapshot')
-                field: player_id
+              to: ref('core_player_snapshot')
+              field: player_id
       - name: classes_played
         description: integer representation of which classes were played.
 
@@ -60,18 +58,17 @@ models:
         description: final score of the blue team
       - name: winning_team
         description: identifier of the winning team
+        data_tests:
+          - accepted_values:
+              values: ['RED','BLU','DRAW']
       - name: win_reason
         description: reason why the match was won
         data_tests:
-          - accepted_values:
-              arguments:
-                values: ['RED','BLU','DRAW']
       - name: result_team
         description: team the player belonged to at the end of the match
         data_tests:
           - accepted_values:
-              arguments:
-                values: ['red','blu','none']
+              values: ['red','blu','none']
       - name: result_score
         description: score achieved by the player
       - name: result_rank
