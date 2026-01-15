@@ -13,6 +13,9 @@ with core_match_cte as (
         map_index,
         player_id,
         classes_played,
+        {{ timestamp_to_sk('connection_time') }} AS match_date_sk,
+    -- date of match
+        CAST(match_creation_time AS DATE) AS match_date,
     -- timestamps
         match_creation_time,
         connection_time,
