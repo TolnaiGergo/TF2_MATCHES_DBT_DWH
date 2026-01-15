@@ -7,7 +7,7 @@ with map_snapshot_cte as(
     from {{ ref('core_map_snapshot')}}
 )
 select
-    map_index,
+    map_index as dim_map_sk,
     map_name,
     game_mode
 from map_snapshot_cte

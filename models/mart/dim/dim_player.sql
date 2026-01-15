@@ -8,7 +8,7 @@ with player_snapshot_cte as(
     from {{ ref('core_player_snapshot')}}
 )
 select
-    player_id,
+    player_id as dim_player_sk,
     player_name,
     country,
     lvl
