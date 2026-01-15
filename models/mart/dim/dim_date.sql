@@ -36,7 +36,7 @@ WITH recursive dates_cte AS
     WHERE today_r >= (SELECT MIN(cast(connection_time as date)) FROM {{ ref('match') }})
 )
 SELECT
-    CAST(CONCAT(year,month,day_of_the_month) AS NUMBER) AS dim_date_sk,
+    TO_NUMBER(TO_CHAR(today, 'YYYYMMDD'))AS dim_date_sk,
     today AS CALENDAR_DATE,
     year,
     quarter,
