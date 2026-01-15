@@ -16,9 +16,11 @@ models:
         description: unique business key identifying a match
 
       # foreign keys
-      - name: map_index
+      - name: dim_date_sk
+        description: foreign key referencing the date dimension
+      - name: dim_map_sk
         description: foreign key referencing the map dimension
-      - name: player_id
+      - name: dim_player_sk
         description: identifier of the player participating in the match
       - name: classes_played
         description: integer representation of which classes were played.
