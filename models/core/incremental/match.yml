@@ -1,0 +1,102 @@
+version: 2
+
+models:
+  - name: match
+    +materialized: incremental
+    description: >
+      Incremental core model.
+      Contains match-level data. Most importantly:
+      - time metadata like connection time, join time, match end time
+      - match outcome data like winning team, win reason, player result
+      - player performance data like kills, deaths, damage, healing, support
+
+    columns:
+      # business key
+      - name: match_id
+        description: unique business key identifying a match
+        data_tests:
+          - unique
+          - not_null
+      # foreign keys
+      - name: map_index
+        description: foreign key referencing the map dimension
+        data_tests:
+          - relationships:
+              to: ref('core_map_snapshot')
+              field: map_index
+      - name: player_id
+        description: identifier of the player participating in the match
+        data_tests:
+          - relationships:
+              to: ref('core_player_snapshot')
+              field: player_id
+      - name: classes_played
+        description: integer representation of which classes were played.
+        data_tests:
+          - is_between:
+              lower: 0
+              upper: 511
+
+      # payload data
+      - name: type
+        description: type of the match
+      - name: match_creation_time
+        description: timestamp when the match was created
+      - name: connection_time
+        description: timestamp when the player connected
+      - name: join_time
+        description: timestamp when the player joined the match
+      - name: joined_after_match_start
+        description: indicator whether the player joined after match start
+      - name: time_in_queue
+        description: time spent in matchmaking queue
+      - name: match_end_time
+        description: timestamp when the match ended
+      - name: time_left_match
+        description: time remaining when the player left the match
+      - name: match_duration
+        description: total duration of the match
+      - name: red_team_final_score
+        description: final score of the red team
+      - name: blu_team_final_score
+        description: final score of the blue team
+      - name: winning_team
+        description: identifier of the winning team
+        data_tests:
+          - accepted_values:
+              values: ['RED','BLU','DRAW']
+      - name: win_reason
+        description: reason why the match was won
+      - name: result_team
+        description: team the player belonged to at the end of the match
+        data_tests:
+          - accepted_values:
+              values: ['red','blu','none']
+      - name: result_score
+        description: score achieved by the player
+      - name: result_rank
+        description: rank achieved by the player
+      - name: kills
+        description: number of kills achieved by the player
+      - name: deaths
+        description: number of deaths of the player
+      - name: damage
+        description: total damage dealt by the player
+      - name: healing
+        description: total healing performed by the player
+      - name: support
+        description: support score or metric
+      - name: leave_reason
+        description: reason why the player left the match
+      - name: reached_conclusion
+        description: indicator whether the match reached a natural conclusion
+
+      # metadata
+      - name: _stg_file_name
+        description: name of the staging source file
+      - name: _stg_file_load_ts
+        description: timestamp when the staging file was loaded
+      - name: _stg_copy_ts
+        description: timestamp when the data was copied into staging
+      - name: _core_load_ts
+        description: timestamp when the record was loaded into the core layer

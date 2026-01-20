@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: source_data
+    database: TF2_DBT_DB 
+    schema: INGEST_SCH
+    tables:
+      - name: STG_PLAYER
+      - name: STG_MAP
+      - name: STG_MATCH
+
+  

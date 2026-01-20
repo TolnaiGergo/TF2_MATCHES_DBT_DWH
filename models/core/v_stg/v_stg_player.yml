@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: v_stg_player
+    +materialized: view
+    description: view based on stage table with extra table for player data. Includes minimal data about the player's name, level, country of organization.
+    columns:
+      # business key
+      - name: player_id
+        description: the original primary key used by the player masterdata source AKA me
+      # payload data
+      - name: player_name
+        description: the user name of the player
+      - name: country
+        description: the country where the player originates from
+      - name: steam_level
+        description: the player's level listed on steam
+      # hash diff
+      - name: hash_diff
+        description: hash of the payload data for change detection
+      # metadata
+      - name: _STG_COPY_TS
+      - name: _STG_FILE_LOAD_TS
+      - name: _STG_FILE_NAME

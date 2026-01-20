@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: v_stg_match
+    +materialized: view
+    description: >
+      Transformed match-level view based on staged match data.
+      Contains normalized payload fields, decoded enumerations,
+      business and foreign keys, and technical metadata.
+
+    columns:
+      # business key
+      - name: match_id
+        description: the original business key identifying a match
+
+      # foreign keys
+      - name: map_index
+        description: foreign key referencing the map dimension
+      - name: player_id
+        description: foreign key referencing the player dimension
+      - name: classes_played
+        description: integer representation of which classes were played. The tenth binary digit was removed by dividing by 2 and flooring the result.
+
+      # payload data
+      - name: type
+        description: match type identifier
+      - name: match_creation_time
+        description: timestamp when the match was created
+      - name: connection_time
+        description: timestamp when the player connected to the match
+      - name: join_time
+        description: timestamp when the player joined the match
+      - name: joined_after_match_start
+        description: boolean indicates whether the player joined after the match started
+      - name: time_in_queue
+        description: time spent in queue before joining the match in seconds
+      - name: match_end_time
+        description: timestamp when the match ended
+      - name: time_left_match
+        description: timestamp indicating when the player left the match
+      - name: match_duration
+        description: total duration of the match in seconds
+      - name: red_team_final_score
+        description: final score of the red team
+      - name: blu_team_final_score
+        description: final score of the blu team
+      - name: winning_team
+        description: the winning team of the match decoded from enumeration
+      - name: win_reason
+        description: win reason decoded from enumeration
+      - name: team_at_join
+        description: team the player joined at match start
+      - name: result_team
+        description: team associated with the player's result
+      - name: result_score
+        description: player's result score
+      - name: result_rank
+        description: player's rank at the end of the match
+      - name: kills
+        description: number of kills by the player during the match
+      - name: deaths
+        description: number of deaths by the player during the match
+      - name: damage
+        description: total damage dealt by the player
+      - name: healing
+        description: total healing done by the player
+      - name: support
+        description: total support score
+      - name: leave_reason
+        description: decoded reason why the player left the match
+      - name: reached_conclusion
+        description: indicates whether the match reached a proper conclusion
+      # metadata
+      - name: _STG_FILE_NAME
+        description: name of the source file from the stage
+      - name: _STG_FILE_LOAD_TS
+        description: timestamp when the source file was loaded
+      - name: _STG_COPY_TS
+        description: timestamp when the data was copied into the stage
+      - name: _core_load_ts

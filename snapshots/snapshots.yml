@@ -1,0 +1,69 @@
+version: 2
+
+snapshots:
+  - name: core_player_snapshot
+    relation: ref('v_stg_player')
+    config:
+      schema: CORE
+      database: TF2_DBT_DB
+      unique_key: player_id
+      strategy: check
+      check_cols: ['hash_diff']
+      hard_deletes: 'invalidate'
+      config:
+      snapshot_meta_column_names:
+        dbt_valid_from: valid_from
+        dbt_valid_to: valid_to
+        dbt_scd_id: player_sk
+        dbt_updated_at: updated_at
+    columns:
+      - name: player_sk
+        description: surrogate key for the player snapshot table
+      - name: player_id
+        description: business key for the player
+      - name: player_name
+        description: the user name of the player
+      - name: country
+        description: the country where the player originates from
+      - name: lvl
+        description: the player's level listed on steam
+      - name: hash_diff
+        description: hash of the payload data for change detection
+      - name: valid_from
+        description: timestamp when the record became valid
+      - name: valid_to
+        description: timestamp when the record became invalid
+      - name: updated_at
+        description: timestamp when the record was last updated
+  - name: core_map_snapshot
+    relation: ref('v_stg_map')
+    config:
+      schema: CORE
+      database: TF2_DBT_DB
+      unique_key: map_index
+      strategy: check
+      check_cols: ['hash_diff']
+      hard_deletes: 'invalidate'
+      config:
+      snapshot_meta_column_names:
+        dbt_valid_from: valid_from
+        dbt_valid_to: valid_to
+        dbt_scd_id: map_sk
+        dbt_updated_at: updated_at
+    columns:
+      - name: map_sk
+        description: surrogate key for the map snapshot table
+      - name: map_index
+        description: business key for the map
+      - name: map_name
+        description: the name of the map
+      - name: game_mode
+        description: the game mode of the map
+      - name: hash_diff
+        description: hash of the payload data for change detection
+      - name: valid_from
+        description: timestamp when the record became valid
+      - name: valid_to
+        description: timestamp when the record became invalid
+      - name: updated_at
+        description: timestamp when the record was last updated

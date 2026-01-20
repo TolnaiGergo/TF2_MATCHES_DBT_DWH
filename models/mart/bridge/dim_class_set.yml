@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: dim_class_set
+    description: key dimension table for connecting the fact table to the class bridge table.
+    columns:
+      # business key
+      - name: classes_played
+        description: integer representation of which classes were played. The tenth binary digit was removed by dividing by 2 and flooring the result.
