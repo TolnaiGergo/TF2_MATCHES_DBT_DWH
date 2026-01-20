@@ -120,5 +120,5 @@ inner join {{ ref('dim_player') }} as dp
 inner join {{ ref('dim_class_set') }} as dcs
     using (classes_played)
 {% if is_incremental() %}
-    where core_match_cte.match_id not in (select match_id from {{ this }})
+    where cm.match_id not in (select match_id from {{ this }})
 {% endif %}
