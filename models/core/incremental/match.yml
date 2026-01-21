@@ -2,6 +2,11 @@ version: 2
 
 models:
   - name: match
+    data-tests:
+      - preceding_date:
+          preceding_date_col: match_creation_time
+          following_date_col: connection_time
+
     +materialized: incremental
     description: >
       Incremental core model.
@@ -11,6 +16,7 @@ models:
       - player performance data like kills, deaths, damage, healing, support
 
     columns:
+
       # business key
       - name: match_id
         description: unique business key identifying a match
