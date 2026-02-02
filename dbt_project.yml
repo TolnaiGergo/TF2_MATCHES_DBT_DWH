@@ -41,6 +41,8 @@ models:
       incremental:
         +materialized: incremental
     mart:
+      +post-hook:
+        - "{{ create_latest_version_view() }}"
       +schema: "MART"
       +materialized: table
       dim:
