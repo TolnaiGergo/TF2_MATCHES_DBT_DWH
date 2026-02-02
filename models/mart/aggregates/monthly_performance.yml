@@ -2,6 +2,7 @@ version: 2
 
 models:
   - name: monthly_performance
+    latest_version: 1
     config:
       contract:
         enforce: true
@@ -25,3 +26,37 @@ models:
       - name: total_losses
         data_type: int
         description: total number of matches lost in the month on the specified map.
+      - name: avg_kills
+        data_type: float
+      - name: avg_deaths
+        data_type: float
+      - name: avg_damage
+        data_type: float
+    
+    versions:
+      - v: 1
+      - v: 2
+        columns:
+          - include: all
+          - name: avg_support
+            data_type: float
+            description: average support rate
+
+          - name: player_name
+            data_type: string
+            description: the name of the player that stats are listed.
+
+exposures:
+  - name: monthly_performance_dashboard
+    description: looker dashboard for monthly wins lossses total matches on different maps
+    type: dashboard
+    url: https://lookerstudio.google.com/reporting/92c3e699-f1e5-4bfe-9d36-c0d3df2617bd
+    maturity: high
+    owner: 
+      name: Tolnai Gergo
+      email: gergotolnai001@gmail.com
+    
+    depends_on:
+      - ref('monthly_performance', v=1)
+
+      
