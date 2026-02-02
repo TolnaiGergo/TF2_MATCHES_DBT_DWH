@@ -10,7 +10,7 @@ with aggregated_match_cte as (
                 ELSE 0
             END
         ) as total_wins,
-        (total_matches - total_wins) as total_loses,
+        (total_matches - total_wins) as total_losses,
         avg(kills) as avg_kills,
         avg(deaths) as avg_deaths,
         avg(damage) as avg_damage
