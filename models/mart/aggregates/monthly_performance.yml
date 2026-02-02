@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: monthly_performance
-    latest_version: 1
+    latest_version: 2
     config:
       contract:
         enforce: true
@@ -35,6 +35,8 @@ models:
     
     versions:
       - v: 1
+        config:
+          enabled: false
       - v: 2
         columns:
           - include: all
@@ -57,6 +59,6 @@ exposures:
       email: gergotolnai001@gmail.com
     
     depends_on:
-      - ref('monthly_performance', v=1)
+      - ref('monthly_performance', v=2)
 
       
