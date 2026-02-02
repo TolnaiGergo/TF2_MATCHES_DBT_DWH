@@ -8,14 +8,20 @@ models:
     description: aggregated monthly performance metrics for montgly players.
     columns:
       - name: year
+        data_type: int
         description: integer value of year
       - name: month
+        data_type: int
         description: integer value of month
       - name: map_name
+        data_type: string
         description: map where the matches were played
       - name: total_matches
+        data_type: int
         description: total number of matches played in the month on the specified map.
       - name: total_wins
+        data_type: int
         description: total number of matches won in the month on the specified map.
       - name: total_losses
+        data_type: int
         description: total number of matches lost in the month on the specified map.
