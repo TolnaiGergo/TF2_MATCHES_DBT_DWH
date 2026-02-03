@@ -61,11 +61,14 @@ seeds:
     +enabled: true
     +full_refresh: true
 
+query-comment:
+  comment: "dbt run on {{ run_started_at }}"
+  append: true
 
 on-run-start: 
-  - "{{ dbt_logging_run_level_start() }}" ## ATARBALY: DBT run level Logging start (from macros)
+  - "{{ dbt_logging_tf_run_start() }}" 
 on-run-end: 
-  ## - "{{ log_failed_models() }}"  ## ATARBALY: DBT run level Logging failed handling (from macros)
-  - "{{ dbt_logging_run_level_end() }}" ## ATARBALY: DBT run level Logging final steps (from macros)
+ 
+  - "{{ dbt_logging_tf_run_end() }}" 
     
     
