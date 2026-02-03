@@ -1,3 +1,7 @@
+{{ config(
+    pre_hook="{{ dbt_logging_tf_model_start() }}",
+) }}
+
 with aggregated_match_cte as (
     select
         year(match_date) as year,
