@@ -31,6 +31,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   TF2:
+    +pre-hook:
+      - "{{ dbt_logging_tf_model_start() }}"
     stage:
       +schema: "STAGE"
       +materialized: table
@@ -38,6 +40,7 @@ models:
       +schema: "CORE"
       v_stg:
         +materialized: view
+        +tags: ['core_v_stg']
       incremental:
         +materialized: incremental
     mart:
@@ -57,9 +60,22 @@ models:
   dbt_artifacts:
     +schema: artifact_audit # optional, default is your target schema
 seeds:
-  class_data:
-    +enabled: true
-    +full_refresh: true
+  TF2:
+    class_data:
+      +pre-hook:
+        - "{{ dbt_logging_tf_model_start() }}"
+      +enabled: true
+      +full_refresh: true
+
+snapshots:
+  TF2:
+    +pre-hook: 
+      - "{{ dbt_logging_tf_model_start() }}"
+    +database: TF2_DBT_DB
+    +schema: CORE
+    +strategy: check
+    +check_cols: ['hash_diff']
+    +hard_deletes: 'invalidate'
 
 query-comment:
   comment: "dbt run on {{ run_started_at }}"
