@@ -9,6 +9,7 @@ with map_snapshot_cte as(
 select
     map_index as dim_map_sk,
     map_name,
-    game_mode
+    game_mode,
+    {{ generate_audit_metadata() }}
 from map_snapshot_cte
 where valid_to is null

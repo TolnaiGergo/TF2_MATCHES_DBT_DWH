@@ -109,7 +109,8 @@ select
         deaths,
         damage,
         healing,
-        support
+        support,
+        {{ generate_audit_metadata() }}
 from core_match_cte as cm
 inner join {{ ref('dim_date')}} as dd
     using (dim_date_sk)

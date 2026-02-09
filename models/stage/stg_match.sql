@@ -29,11 +29,13 @@ with match_source AS
         leave_reason,
         reached_conclusion::boolean as reached_conclusion,
         player_id::number as player_id,
+        -- metadata
         _stg_file_name,
         _stg_file_load_ts,
         _stg_copy_ts
     FROM {{source('source_data','STG_MATCH')}} 
 )
 SELECT
-*
+*,
+{{ generate_audit_metadata() }}
 FROM match_source

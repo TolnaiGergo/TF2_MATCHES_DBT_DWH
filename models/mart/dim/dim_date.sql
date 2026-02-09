@@ -45,5 +45,6 @@ SELECT
     day_of_year,
     day_of_week,
     day_of_the_month,
-    day_name
+    day_name,
+    {{ generate_audit_metadata() }}
 FROM dates_cte

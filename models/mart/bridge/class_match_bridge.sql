@@ -10,5 +10,6 @@ SELECT
     CASE
         WHEN BITAND(classes_played,POWER(2,idx)) <> 0 THEN TRUE
         ELSE FALSE
-    END AS participated
+    END AS participated,
+    {{ generate_audit_metadata() }}
 FROM mask, {{ ref('dim_class_set') }}

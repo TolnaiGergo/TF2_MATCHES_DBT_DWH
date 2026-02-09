@@ -45,8 +45,7 @@ with v_stg_match_cte as (
 )
 select
     v_stg.*,
-    -- additional metadata
-    CURRENT_TIMESTAMP() as _core_load_ts 
+    {{ generate_audit_metadata() }}
 from v_stg_match_cte as v_stg
 where match_id is not null
 {% if is_incremental() %}

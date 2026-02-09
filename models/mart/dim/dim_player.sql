@@ -1,7 +1,4 @@
-{{ config(
-    pre_hook="{{ dbt_logging_model_level_start() }}",
-    post_hook="{{ dbt_logging_model_level_end() }}"
-) }}
+
 with player_snapshot_cte as(
     select
         player_id,
@@ -16,6 +13,6 @@ select
     player_name,
     country,
     lvl,
-    CURRENT_TIMESTAMP() as loaded_at
+    {{ generate_audit_metadata() }}
 from player_snapshot_cte
 where valid_to is null

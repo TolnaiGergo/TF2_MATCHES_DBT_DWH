@@ -1,6 +1,3 @@
-{{ config(
-    pre_hook="{{ dbt_logging_tf_model_start() }}",
-) }}
 
 with aggregated_match_cte as (
     select
@@ -32,4 +29,7 @@ with aggregated_match_cte as (
              player_name
     order by year desc, month desc, map_name asc
 )
-select * from aggregated_match_cte
+select 
+    *,  
+    {{ generate_audit_metadata() }}
+ from aggregated_match_cte

@@ -49,13 +49,15 @@ default_rows_cte as (
     as t(player_id, player_name, country, lvl, hash_diff, _stg_file_name, _stg_file_load_ts, _stg_copy_ts)
 )
 select
-    v_stg .*
+    v_stg .*,
+    {{ generate_audit_metadata() }}
 from v_stg_player_cte as v_stg
 
 union
 
 select
-    default_rows_cte.*
+    default_rows_cte.*,
+    {{ generate_audit_metadata() }}
 from default_rows_cte
     
     

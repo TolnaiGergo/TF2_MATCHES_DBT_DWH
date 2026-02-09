@@ -19,5 +19,6 @@ SELECT
     -- metadata
     _stg_file_name::varchar as _stg_file_name,
     _stg_file_load_ts::timestamp as _stg_file_load_ts,
-    _stg_copy_ts::timestamp as _stg_copy_ts
+    _stg_copy_ts::timestamp as _stg_copy_ts,
+    {{ generate_audit_metadata() }}
 FROM map_source
