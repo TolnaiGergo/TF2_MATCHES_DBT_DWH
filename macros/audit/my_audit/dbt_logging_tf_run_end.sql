@@ -10,12 +10,12 @@
 
 {# update rows for each model in model table #}
 {% for r in results %}
-    {% if r.node.resource_type in ['model', 'test', 'seed', 'snapshot'] %}
-        -- look for resource specific fields if available
-        {% if r.adapter_response is defined and r.adapter_response.rows_affected is defined %}
+    {% if r.node.resource_type in ['model', 'snapshot', 'seed'] %}
+        {% set rows = 'null' %}
+        {% if r.node.config.materialized in ['table', 'incremental'] or r.node.resource_type == 'snapshot' %}
+            {% set rows = "(SELECT COUNT(*) FROM " ~ r.node.relation_name ~ " WHERE dbt_invocation_id = '" ~ invocation_id ~ "')" %}
+        {% elif r.node.resource_type == 'seed' and r.adapter_response.rows_affected is defined %}
             {% set rows = r.adapter_response.rows_affected %}
-        {% else %}
-            {% set rows = none %}
         {% endif %}
 
         UPDATE TF2_DBT_DB.DEV_AUDIT.dbt_model_execution
@@ -24,11 +24,8 @@
             status = '{{ r.status | upper }}',
             finished_at = CURRENT_TIMESTAMP(),
             duration_sec = {{r.execution_time | default(0)}},
-            model_name = '{{ r.node.name }}',
-            type = '{{ r.node.resource_type }}',
-            execution_id = '{{ invocation_id }}_{{ r.node.unique_id }}',
         -- specific fields
-            rows_inserted = {{ rows if rows is not none else 'null' }}
+            rows_inserted = {{ rows }}
         -- identify record to update
         WHERE execution_id = '{{ invocation_id }}_{{ r.node.unique_id }}'
           AND status = 'RUNNING';
