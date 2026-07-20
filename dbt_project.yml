@@ -31,8 +31,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   TF2:
-    +pre-hook:
-      - "{{ dbt_logging_tf_model_start() }}"
+    #+pre-hook:
+      #- "{{ dbt_logging_tf_model_start() }}"
     stage:
       +schema: "STAGE"
       +materialized: table
@@ -62,29 +62,35 @@ models:
 seeds:
   TF2:
     class_data:
-      +pre-hook:
-        - "{{ dbt_logging_tf_model_start() }}"
+      #+pre-hook:
+        #- "{{ dbt_logging_tf_model_start() }}"
       +enabled: true
       +full_refresh: true
 
 snapshots:
   TF2:
-    +pre-hook: 
-      - "{{ dbt_logging_tf_model_start() }}"
+    #+pre-hook: 
+      #- "{{ dbt_logging_tf_model_start() }}"
     +database: TF2_DBT_DB
     +schema: CORE
     +strategy: check
     +check_cols: ['hash_diff']
     +hard_deletes: 'invalidate'
 
+dispatch:
+  - macro_namespace: dbt
+    search_order:
+      - TF2
+      - dbt_snowflake_monitoring
+      - dbt
+
 query-comment:
-  comment: "dbt run on {{ run_started_at }}"
+  comment: '{{ dbt_snowflake_monitoring.get_query_comment(node) }}'
   append: true
 
 on-run-start: 
-  - "{{ dbt_logging_tf_run_start() }}" 
+  #- "{{ dbt_logging_tf_run_start() }}" 
 on-run-end: 
- 
-  - "{{ dbt_logging_tf_run_end() }}" 
+  #- "{{ dbt_logging_tf_run_end() }}" 
     
     
