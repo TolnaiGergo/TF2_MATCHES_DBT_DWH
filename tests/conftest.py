@@ -14,8 +14,8 @@ import subprocess
 import pytest
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-SQL_ROOT = REPO_ROOT / "TF2/models"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SQL_ROOT = REPO_ROOT / "models"
 
 def get_files_from_workdir(workdir: Path = SQL_ROOT, pattern: str = "*.sql", regex: re.Pattern | None = None) -> list[Path]:
     """
