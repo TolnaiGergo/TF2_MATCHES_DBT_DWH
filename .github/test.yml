@@ -1,0 +1,40 @@
+name: Test Pipeline
+
+on:
+  pull_request:
+    branches:
+      - prod
+      - qa
+      - dev
+    types:
+      - opened
+      - reopened
+      - synchronize  # Run on new commits to PR
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    name: pytest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.8.0"
+          enable-cache: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+
+      - name: Install project dependencies
+        run: uv sync --locked --all-extras --dev
+
+      - name: Run pytest (all except conventions)
+        run: uv run pytest -m "not conventions"
