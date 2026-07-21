@@ -14,8 +14,9 @@ import subprocess
 import pytest
 
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
-SQL_ROOT = REPO_ROOT / "TF2/models"
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SQL_ROOT = REPO_ROOT / "models"
+SELECTED_SQL_FILES: list[str] = []
 
 def get_files_from_workdir(workdir: Path = SQL_ROOT, pattern: str = "*.sql", regex: re.Pattern | None = None) -> list[Path]:
     """
@@ -36,6 +37,12 @@ def get_files_from_workdir(workdir: Path = SQL_ROOT, pattern: str = "*.sql", reg
         return [p for p in workdir.rglob(str(pattern)) if regex.search(p.read_text(encoding="utf-8"))]
     else:
         return list(workdir.rglob(pattern))
+
+def pytest_sessionstart(session) -> None:
+    if SELECTED_SQL_FILES:
+        print("Selected SQL files for pytest:")
+        for file_path in SELECTED_SQL_FILES:
+            print(f"- {file_path}")
 
 def get_changed_files(workdir: Path = SQL_ROOT) -> list[str]:
     """

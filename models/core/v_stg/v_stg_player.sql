@@ -59,5 +59,4 @@ select
     default_rows_cte.*,
     {{ generate_audit_metadata() }}
 from default_rows_cte
-    
-    
+-- another comment
