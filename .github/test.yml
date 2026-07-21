@@ -3,9 +3,8 @@ name: Test Pipeline
 on:
   pull_request:
     branches:
-      - prod
-      - qa
       - dev
+      - main
     types:
       - opened
       - reopened
