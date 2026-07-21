@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-python@v6
 
       - name: Install project dependencies
-        run: uv sync --locked --all-extras --dev
+        run: uv sync --locked --all-extras --main
 
       - name: Run pytest (all conventions)
         run: uv run pytest -m "conventions"
