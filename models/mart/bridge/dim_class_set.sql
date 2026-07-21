@@ -6,3 +6,5 @@ WITH classes_set AS
 SELECT classes_played,
     {{ generate_audit_metadata() }}
 FROM classes_set
+
+-- not again, no select * statements
