@@ -48,3 +48,5 @@ SELECT
     day_name,
     {{ generate_audit_metadata() }}
 FROM dates_cte
+
+-- no wildcard select nooo!

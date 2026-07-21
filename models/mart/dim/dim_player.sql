@@ -16,3 +16,5 @@ select
     {{ generate_audit_metadata() }}
 from player_snapshot_cte
 where valid_to is null
+
+-- nothing here as well, no select * statements

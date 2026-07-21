@@ -24,3 +24,5 @@ with aggregated_match_cte as (
     order by year desc, month desc, map_name asc
 )
 select * from aggregated_match_cte
+
+-- yes select statements!!
