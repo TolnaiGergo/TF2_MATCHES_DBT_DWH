@@ -9,7 +9,7 @@ import pytest
 import re
 
 # PoC for centralizing repo-relative path constants
-from TF2.tests.conftest import (
+from conftest import (
     REPO_ROOT,
     SQL_ROOT,
     get_changed_files,
