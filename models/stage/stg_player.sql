@@ -21,5 +21,6 @@ SELECT
     -- metadata
     _STG_COPY_TS::timestamp as _STG_COPY_TS,
     _STG_FILE_LOAD_TS::timestamp as _STG_FILE_LOAD_TS,
-    _STG_FILE_NAME::varchar as _STG_FILE_NAME
+    _STG_FILE_NAME::varchar as _STG_FILE_NAME,
+    {{ generate_audit_metadata() }}
 FROM player_source

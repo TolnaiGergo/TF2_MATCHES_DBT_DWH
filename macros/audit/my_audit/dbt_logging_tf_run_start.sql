@@ -1,4 +1,4 @@
-{% macro dbt_logging_run_level_start() %}
+{% macro dbt_logging_tf_run_start() %}
 INSERT INTO TF2_DBT_DB.DEV_AUDIT.dbt_run_execution (
     invocation_id,
     command,

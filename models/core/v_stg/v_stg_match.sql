@@ -109,5 +109,6 @@ v_stg_match_cte as(
     from stg_match_cte   
 )
 select
-    *
+    *,
+    {{ generate_audit_metadata() }}
 from v_stg_match_cte
