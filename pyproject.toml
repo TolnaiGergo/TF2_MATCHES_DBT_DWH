@@ -1,0 +1,52 @@
+[project]
+name = "TF""
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp[cli]>=1.20.0",
+    "sqlglot>=26.33.0",
+    "pydantic>=2.12.4",
+    "aiohttp>=3.13.2",
+    "databricks-connect>=17.3.1",
+    "databricks-sdk[notebook]>=0.73.0",
+    "ipykernel>=7.1.0",
+    "python-dotenv>=1.2.1",
+    "pyyaml>=6.0.3",
+    "openpyxl>=3.1.5",
+    "office365-rest-python-client>=2.6.2",
+    "databricks-bundles>=0.276.0",
+    "databricks-dlt>=0.3.0",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0", # for coverage reports
+    "boto3>=1.40.68",
+    "databricks-sql-connector>=4.1.4",
+    "pyodbc>=5.3.0",
+    "databricks-mcp>=0.8.0",
+    "nest-asyncio>=1.6.0",
+    "azure-identity>=1.25.2",
+    "playwright>=1.58.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "ruff>=0.12.0",
+    "pyright>=1.1.405",
+]
+
+[tool.uv.workspace]
+members = [
+    "hello-world",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests"
+]
+markers = [
+    "conventions: Tag for sql convention tests, enforcing formatting and naming conventions",
+    "pipeline: Tag for mandatory pipeline related tests"
+]
+pythonpath = ["."]
