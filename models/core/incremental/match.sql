@@ -53,3 +53,5 @@ where match_id is not null
     and v_stg._stg_file_load_ts > ( select max(_stg_file_load_ts) from {{this}})
     and v_stg.match_id not in (select match_id from {{ this }})
 {% endif %}
+
+-- another comment
