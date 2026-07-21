@@ -33,7 +33,7 @@ CTE_PREFIX_PATTERN = re.compile(
 
 is_pull_request = os.getenv("GITHUB_EVENT_NAME") == "pull_request"
 if os.getenv("GITHUB_ACTIONS") == "true" and is_pull_request:
-
+    print("Running tests on changed files only (pull request context detected).")
     changed_files = get_changed_files(workdir=SQL_ROOT)
     sql_files = [
         str(REPO_ROOT / f)
